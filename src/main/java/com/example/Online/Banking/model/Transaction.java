@@ -7,5 +7,4 @@ public class Transaction {
     private long sum;
     private LocalDate localDate;
     private BankAccount bankAccount;
-
 }
