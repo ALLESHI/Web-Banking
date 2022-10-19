@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class BankAccount {
+public class AccountNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
@@ -18,7 +18,7 @@ public class BankAccount {
     private String accountNumber;
     private String type;
     private String currency;
-    private long balance;
+    private double balance;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

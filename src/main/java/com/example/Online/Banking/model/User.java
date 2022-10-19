@@ -24,5 +24,5 @@ public class User {
 
     @OneToMany
     @JoinColumn(name = "account_id")
-    private List<BankAccount> account;
+    private List<AccountNumber> account;
 }
