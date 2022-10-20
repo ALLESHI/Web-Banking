@@ -1,12 +1,13 @@
 package com.example.Online.Banking.service;
 
-import com.example.Online.Banking.model.AccountNumber;
+import com.example.Online.Banking.model.BankAccount;
 import com.example.Online.Banking.repo.AccountNumberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
-
+@Service
 public class AccountNumberService {
     private final AccountNumberRepo accountNumberRepo;
     @Autowired
@@ -14,13 +15,13 @@ public class AccountNumberService {
         this.accountNumberRepo = accountNumberRepo;
     }
 
-    public AccountNumber addBankAccount(AccountNumber accountNumber){
+    public BankAccount addBankAccount(BankAccount bankAccount){
         Random random = new Random(5);
-        accountNumber.setAccountNumber("AL" + accountNumber.getId() + "00000" + random.toString());
-        return accountNumberRepo.save(accountNumber);
+        bankAccount.setAccountNumber("AL" + bankAccount.getId().toString() + "00000" + random.toString());
+        return accountNumberRepo.save(bankAccount);
     }
 
-    public List<AccountNumber> showAllBankAccounts(Integer id){
+    public List<BankAccount> showAllBankAccounts(Integer id){
         return accountNumberRepo.findAllBankAccountsById(id);
     }
 }
