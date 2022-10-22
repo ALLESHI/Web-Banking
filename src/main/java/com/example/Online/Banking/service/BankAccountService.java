@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Random;
 @Service
-public class AccountNumberService {
+public class BankAccountService {
     private final AccountNumberRepo accountNumberRepo;
     @Autowired
-    public AccountNumberService(AccountNumberRepo accountNumberRepo) {
+    public BankAccountService(AccountNumberRepo accountNumberRepo) {
         this.accountNumberRepo = accountNumberRepo;
     }
 
     public BankAccount addBankAccount(BankAccount bankAccount){
-        Random random = new Random(5);
-        bankAccount.setAccountNumber("AL" + bankAccount.getId().toString() + "00000" + random.toString());
+//        Random random = new Random(5);
+//        bankAccount.setAccountNumber("AL" + bankAccount.getId().toString() + "00000");
         return accountNumberRepo.save(bankAccount);
     }
 

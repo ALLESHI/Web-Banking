@@ -1,6 +1,7 @@
 package com.example.Online.Banking.Controller;
 
 import com.example.Online.Banking.model.BankAccount;
+import com.example.Online.Banking.model.Transaction;
 import com.example.Online.Banking.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,19 +22,19 @@ public class TransactionController {
 
     @PostMapping("deposit")
     public ResponseEntity<Void> deposit(@RequestBody BankAccount bankAccount, Double amount) throws Exception {
-        transactionService.deposit(bankAccount, amount);
+        transactionService.depositTransaction(bankAccount, amount);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("withdraw")
-    public ResponseEntity<Void> withdraw(@RequestBody BankAccount bankAccount, Double amount) throws Exception {
-        transactionService.withdraw(bankAccount, amount);
+    public ResponseEntity<Void> withdraw(@RequestBody Transaction transaction, BankAccount bankAccount, Double amount) throws Exception {
+        transactionService.withdrawTransaction(transaction, bankAccount, amount);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("transfer")
     public ResponseEntity<Void> transfer(@RequestBody BankAccount bankAccount, Double amount) throws Exception {
-        transactionService.accountTransfer(amount, bankAccount);
+        transactionService.accountTransferTransaction(amount, bankAccount);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
