@@ -24,7 +24,5 @@ public class User {
 
     @OneToMany
     @JoinColumn(name = "account_id")
-    @PrimaryKeyJoinColumn
     private List<BankAccount> bankAccountList;
-
 }

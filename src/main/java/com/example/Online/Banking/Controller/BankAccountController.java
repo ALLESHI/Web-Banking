@@ -2,7 +2,6 @@ package com.example.Online.Banking.Controller;
 
 import com.example.Online.Banking.dto.BankAccountDTO;
 import com.example.Online.Banking.model.BankAccount;
-import com.example.Online.Banking.model.User;
 import com.example.Online.Banking.service.BankAccountService;
 import com.example.Online.Banking.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -22,10 +21,9 @@ public class BankAccountController {
         this.userService = userService;
     }
 
-
     @PostMapping("/createAccount")
     public ResponseEntity<BankAccount> createBankAccounts(@RequestBody BankAccountDTO bankAccount){
-        BankAccount newBankAccount = bankAccountService.dtotoEntity(bankAccount);
+        BankAccount newBankAccount = bankAccountService.DTOToEntity(bankAccount);
         bankAccountService.addBankAccount(newBankAccount);
         return new ResponseEntity<>(newBankAccount, HttpStatus.CREATED);
     }

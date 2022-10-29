@@ -27,6 +27,5 @@ public class BankAccount {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    @PrimaryKeyJoinColumn
     private User user;
 }
