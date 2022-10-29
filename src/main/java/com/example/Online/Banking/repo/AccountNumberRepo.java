@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface AccountNumberRepo extends JpaRepository<BankAccount, Integer> {
+public interface AccountNumberRepo extends JpaRepository<BankAccount, Long> {
 
-    List<BankAccount> findAllBankAccountsById(Integer id);
-
-    boolean findBankAccountsByAccountNumber(String accountNumber);
+//    List<BankAccount> findAllById(Long id);
+//
+//    boolean findBankAccountsByAccountNumber(String accountNumber);
 }

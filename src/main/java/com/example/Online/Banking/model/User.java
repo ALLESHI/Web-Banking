@@ -15,8 +15,8 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private Integer id;
+    @Column(name = "user_id", nullable = false, updatable = false)
+    private Integer userID;
     private String name;
     private String email;
     private String phone;
@@ -24,5 +24,7 @@ public class User {
 
     @OneToMany
     @JoinColumn(name = "account_id")
-    private List<BankAccount> account;
+    @PrimaryKeyJoinColumn
+    private List<BankAccount> bankAccountList;
+
 }

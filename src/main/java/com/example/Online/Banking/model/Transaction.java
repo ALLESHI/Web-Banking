@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -13,12 +15,12 @@ import java.time.LocalDateTime;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
+    @Column(name = "transaction_id", nullable = false, updatable = false)
     private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "bank_account_id")
-    private BankAccount bankAccount;
     private long transactionAmount;
     private LocalDateTime localDateTime;
+
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private BankAccount bankAccountList;
 }
