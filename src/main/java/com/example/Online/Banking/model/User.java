@@ -15,14 +15,13 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Integer userID;
     private String name;
     private String email;
     private String phone;
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "account_id")
-    private List<BankAccount> bankAccountList;
+    @OneToMany(mappedBy="user")
+    private List<BankAccount> bankAccounts;
 }

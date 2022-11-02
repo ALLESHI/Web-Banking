@@ -2,11 +2,14 @@ package com.example.Online.Banking.Controller;
 
 import com.example.Online.Banking.dto.BankAccountDTO;
 import com.example.Online.Banking.model.BankAccount;
+import com.example.Online.Banking.model.User;
 import com.example.Online.Banking.service.BankAccountService;
 import com.example.Online.Banking.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/accountNumber")
@@ -21,7 +24,7 @@ public class BankAccountController {
         this.userService = userService;
     }
 
-    @PostMapping("/createAccount")
+    @PostMapping("/addBankAccount")
     public ResponseEntity<BankAccount> createBankAccounts(@RequestBody BankAccountDTO bankAccount){
         BankAccount newBankAccount = bankAccountService.DTOToEntity(bankAccount);
         bankAccountService.addBankAccount(newBankAccount);
@@ -34,11 +37,13 @@ public class BankAccountController {
         return new ResponseEntity<>(bankAccount, HttpStatus.OK);
     }
 
-//    @GetMapping("/findAllById/{id}")
-//    public ResponseEntity<List<BankAccount>> showAllBankAccountsById(@PathVariable("id") Long id){
-//        List<BankAccount> bankAccountList = List.of();
-//        return new ResponseEntity<>(bankAccountList, HttpStatus.OK);
-//    }
+    @GetMapping("/findAllById/{id}")
+    public ResponseEntity<List<BankAccount>> showAllBankAccountsByUserId(@PathVariable("id") Integer id){
+        User user = userService.getUserById(id);
+        List<BankAccount> bankAccountList = user.getBankAccounts();
+        return new ResponseEntity<>(bankAccountList, HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteBankAccount(@PathVariable("id") Long id){

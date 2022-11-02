@@ -57,9 +57,8 @@ public class BankAccountService {
         bankAccount.setBalance(bankAccountDTO.getBalance());
         bankAccount.setBankAccountType(BankAccountType.valueOf(bankAccountDTO.getBankAccountType()));
         bankAccount.setAccountNumber(bankAccountDTO.getAccountNumber());
-        User user = userService.getUser(bankAccountDTO.getUserId());
+        User user = userService.getUserById(bankAccountDTO.getUserId());
         bankAccount.setUser(user);
-
         return bankAccount;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.Online.Banking.service;
 
+import com.example.Online.Banking.dto.UserDTO;
 import com.example.Online.Banking.model.User;
 import com.example.Online.Banking.repo.UserRepo;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    public User getUser(Integer id){
+    public User getUserById(Integer id){
         return userRepo.findById(id).get();
     }
 
@@ -29,5 +30,16 @@ public class UserService {
 
     public List<User> showUsers(){
         return userRepo.findAll();
+    }
+
+    public UserDTO entityToDTO(User entity){
+        UserDTO userDTO = new UserDTO();
+
+        userDTO.setName(entity.getName());
+        userDTO.setEmail(entity.getEmail());
+        userDTO.setPhone(entity.getPhone());
+        userDTO.setPassword(entity.getPassword());
+        userDTO.setBankAccountId(entity.getBankAccounts().listIterator().next().getBankAccountID());
+        return userDTO;
     }
 }
