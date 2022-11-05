@@ -1,4 +1,5 @@
 package com.example.Online.Banking.Controller;
+import com.example.Online.Banking.dto.UserDTO;
 import com.example.Online.Banking.model.User;
 import com.example.Online.Banking.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,14 @@ public class UserController {
     @PostMapping("/createUser")
     public ResponseEntity<User> createUser(@RequestBody User user){
         User newUser = userService.addUser(user);
+
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/loginUser")
+    public ResponseEntity<String> loginUser(@RequestBody UserDTO user){
+        String loginUser = userService.loginUser(user);
+        return new ResponseEntity<>(loginUser, HttpStatus.OK);
     }
 
     @GetMapping("/showAllUsers")

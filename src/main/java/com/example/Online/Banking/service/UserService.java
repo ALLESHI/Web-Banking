@@ -1,10 +1,8 @@
 package com.example.Online.Banking.service;
-
 import com.example.Online.Banking.dto.UserDTO;
 import com.example.Online.Banking.model.User;
 import com.example.Online.Banking.repo.UserRepo;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -36,10 +34,25 @@ public class UserService {
         UserDTO userDTO = new UserDTO();
 
         userDTO.setName(entity.getName());
+        userDTO.setSurname(entity.getSurname());
         userDTO.setEmail(entity.getEmail());
         userDTO.setPhone(entity.getPhone());
         userDTO.setPassword(entity.getPassword());
         userDTO.setBankAccountId(entity.getBankAccounts().listIterator().next().getBankAccountID());
         return userDTO;
+    }
+
+    public String loginUser(UserDTO user) {
+        User userEntity = userRepo.findUserByEmail(user.getEmail());
+        if (userEntity==null){
+            return "Doesn't exist";
+        }
+        String dbPassword = userRepo.findUserByEmail(user.getEmail()).getPassword();
+
+        if(dbPassword.equals(user.getPassword())){
+            return null;
+        }else{
+            return "Password mismatch";
+        }
     }
 }
