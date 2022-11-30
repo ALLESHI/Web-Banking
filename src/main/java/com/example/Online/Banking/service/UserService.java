@@ -15,6 +15,7 @@ public class UserService {
     }
 
     public User addUser(User user){
+
         return userRepo.save(user);
     }
 
@@ -29,11 +30,10 @@ public class UserService {
     public List<User> showUsers(){
         return userRepo.findAll();
     }
-
+    public int l;
     public UserDTO entityToDTO(User entity){
         UserDTO userDTO = new UserDTO();
-
-        userDTO.setName(entity.getName());
+        userDTO.setName(entity.getName().substring(0, 1).toUpperCase() + entity.getName().substring(1));
         userDTO.setSurname(entity.getSurname());
         userDTO.setEmail(entity.getEmail());
         userDTO.setPhone(entity.getPhone());

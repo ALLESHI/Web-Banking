@@ -17,32 +17,27 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
     @PostMapping("/createUser")
     public ResponseEntity<User> createUser(@RequestBody User user){
         User newUser = userService.addUser(user);
 
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
-
     @PostMapping("/loginUser")
     public ResponseEntity<String> loginUser(@RequestBody UserDTO user){
         String loginUser = userService.loginUser(user);
         return new ResponseEntity<>(loginUser, HttpStatus.OK);
     }
-
     @GetMapping("/showAllUsers")
     public ResponseEntity<List<User>> showAllUsers(){
         List<User> userList = userService.showUsers();
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
-
     @GetMapping("/Users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Integer id){
         User user = userService.getUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") Integer id){
         userService.deleteUserById(id);
